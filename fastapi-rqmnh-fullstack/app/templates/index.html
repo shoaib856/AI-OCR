@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+{% block content %}
+<section class="my-flex">
+ 
+  <div class="left">
+    
+    <div class="left2">
+    <form id="upload-form">
+      
+      <div class="con">
+        <label for="file" class="custom-file-upload">
+          <iconify-icon icon="material-symbols:upload-file" class="text"></iconify-icon>
+          <h4>Click to select</h4>
+          <p>pdf,png,jpg,jpeg</p>
+        </label>
+      </div>
+      <input type="file" id="file" name="file" accept="image/*,application/pdf" required />
+    </form>
+
+    <div id="status" class="status"></div>
+    </div>
+  </div>  
+    <!-- <div class="results-list">
+      <div class="results-header">
+        <strong>النتيجة</strong>
+        <label class="checkbox small">
+          <input type="checkbox" id="toggle-all" />
+          إظهار كل الصناديق
+        </label>SSSSٍSSSSSSSSSSSSS
+      </div>
+      <ol id="lines"></ol>
+    </div>
+  </div> -->
+
+
+
+
+  <div class="col preview " >
+    <div class="center">
+        <select id="lang" name="SUPPORTED_LANGUAGES">
+          <option value="en" selected>English</option>
+          <option value="ar">Arabic</option>
+        </select>
+        <div class="btn"><button id="btn-generate" type="submit"> Generate text ✨ <div id="small-loader" class="small-loader" style="display: none;"><div class="small-spinner">loaad...</div></div></button></div>
+        <select id="clasifier" name="clasifier">
+          <option value="ar" selected>تشغيل المصنف</option>
+          <option value="en">بدون مصنف</option>
+        </select>
+
+      </div>
+      
+      <!-- <label class="checkbox">
+        <input class="serch" type="checkbox" id="clasifier" name="clasifier" checked  />
+        تشغيل المصنف
+      </label> -->
+    <div class="stage" id="stage">
+      <img id="preview" alt="معاينة" {% if False %}{% endif %}/>
+      <canvas id="overlay"></canvas>
+    </div>
+    <div class="hint small">
+      انقر على أي جملة في القائمة لتمييز مكانها على الصورة.
+    </div>
+    <div class="sample small">
+      يمكنك تجربة صورة عينة من <code>/static/img/sample.png</code> إن وُجدت.
+    </div>
+  </div>
+
+
+  
+
+
+
+  </div>
+  <div class="results-list">
+      <div class="results-header">
+        <strong>Result</strong>
+        <!-- <label class="checkbox small">
+          <input type="checkbox" id="toggle-all" />
+          إظهار كل الصناديق
+        </label> -->
+        <div class="bb"><button class="checkbox small" id="toggle-all">Show All Boxs</button></div>
+      </div>
+      <ol id="lines"></ol>
+    </div>
+  </div>
+
+
+  
+</section>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
