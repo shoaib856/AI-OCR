@@ -1,0 +1,13 @@
+
+# Python Backend Dependencies
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+pydantic>=2.7.0
+pydantic-settings>=2.2.1
+Jinja2>=3.1.4
+httpx>=0.27.0
+
+# Frontend Build Requirements
+# Requires Node.js 20+ and npm
+# Run: cd frontend && npm install

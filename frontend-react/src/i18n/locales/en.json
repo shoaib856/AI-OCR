@@ -1,0 +1,73 @@
+{
+    "header": {
+        "aiTitle": "Artificial intelligence",
+        "aiSubtitle": "Digitize documents",
+        "heroTitle": "Digitize documents",
+        "heroDescription": "Convert written documents into digital documents as soon as they are uploaded."
+    },
+    "upload": {
+        "click": "Click to select",
+        "formats": "pdf, png, jpg, jpeg",
+        "title": "Upload document"
+    },
+    "processing": {
+        "generateText": "Generate text",
+        "loading": "Loading...",
+        "processingImage": "Processing image...",
+        "selectImageFirst": "Please select an image first.",
+        "errorProcessing": "Error processing image",
+        "errorDuringProcessing": "Error during processing",
+        "success": "Success",
+        "imageUploaded": "Image uploaded, click 'Generate text' to process",
+        "fileSelected": "File selected",
+        "failedToExtractText": "Failed to extract text"
+    },
+    "classifier": {
+        "use": "Use classifier",
+        "without": "Without classifier"
+    },
+    "preview": {
+        "clickHint": "Click on any sentence in the list to highlight its location on the image.",
+        "sampleText": "You can try a sample image from",
+        "preview": "Preview",
+        "clickToSelectLine": "Click to select line",
+        "activeLine": "Active line",
+        "noText": "(No text)"
+    },
+    "results": {
+        "title": "Result",
+        "hideBoxes": "Hide Boxes",
+        "showAllBoxes": "Show All Boxes",
+        "hideLines": "Hide Lines",
+        "showLines": "Show Lines",
+        "toggleLineBoxes": "Toggle line boxes",
+        "noLinesExtracted": "No lines extracted"
+    },
+    "language": {
+        "english": "English",
+        "arabic": "Arabic",
+        "selectLanguage": "Select Language",
+        "selectClassifier": "Select Classifier"
+    },
+    "actions": {
+        "clearAllData": "Clear all data",
+        "clearData": "Clear Data",
+        "logo": "Logo"
+    },
+    "about": {
+        "title": "About Document Digitizer",
+        "modernStack": "Modern Stack",
+        "modernStackDesc": "Built with FastAPI backend and React 19 frontend using the latest web technologies.",
+        "aiPowered": "AI-Powered OCR",
+        "aiPoweredDesc": "Advanced text recognition with configurable classifier for accurate document digitization.",
+        "bilingualSupport": "Bilingual Support",
+        "bilingualSupportDesc": "Full English and Arabic support with RTL layout and interactive text detection.",
+        "responsiveDesign": "Responsive Design",
+        "responsiveDesignDesc": "Mobile-friendly interface with canvas overlay for interactive text region selection.",
+        "techStack": "Technology Stack",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "state": "State",
+        "build": "Build"
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "header": {
+        "aiTitle": "الذكاء الاصطناعي",
+        "aiSubtitle": "رقمنة المستندات",
+        "heroTitle": "رقمنة المستندات",
+        "heroDescription": "تحويل المستندات المكتوبة إلى مستندات رقمية بمجرد رفعها."
+    },
+    "upload": {
+        "click": "انقر للاختيار",
+        "formats": "pdf, png, jpg, jpeg",
+        "title": "رفع المستند"
+    },
+    "processing": {
+        "generateText": "توليد النص",
+        "loading": "جاري التحميل...",
+        "processingImage": "جارِ معالجة الصورة...",
+        "selectImageFirst": "الرجاء اختيار صورة أولاً",
+        "errorProcessing": "خطأ أثناء معالجة الصورة",
+        "errorDuringProcessing": "حدث خطأ أثناء المعالجة",
+        "success": "تم بنجاح",
+        "imageUploaded": "تم رفع الصورة، انقر على 'إنشاء النص' للمعالجة",
+        "fileSelected": "تم اختيار الملف",
+        "failedToExtractText": "فشل في استخراج النص"
+    },
+    "classifier": {
+        "use": "تشغيل المصنف",
+        "without": "بدون مصنف"
+    },
+    "preview": {
+        "clickHint": "انقر على أي جملة في القائمة لتمييز مكانها على الصورة.",
+        "sampleText": "يمكنك تجربة صورة عينة من",
+        "preview": "معاينة",
+        "clickToSelectLine": "انقر لاختيار الخط",
+        "activeLine": "الخط النشط",
+        "noText": "(بدون نص)"
+    },
+    "results": {
+        "title": "النتائج",
+        "hideBoxes": "إخفاء الصناديق",
+        "showAllBoxes": "إظهار كل الصناديق",
+        "hideLines": "إخفاء الخطوط",
+        "showLines": "إظهار الخطوط",
+        "toggleLineBoxes": "تبديل صناديق الخطوط",
+        "noLinesExtracted": "لم يتم استخراج خطوط"
+    },
+    "language": {
+        "english": "الإنجليزية",
+        "arabic": "العربية",
+        "selectLanguage": "اختر اللغة",
+        "selectClassifier": "اختر المصنف"
+    },
+    "actions": {
+        "clearAllData": "مسح جميع البيانات",
+        "clearData": "مسح البيانات",
+        "logo": "الشعار"
+    },
+    "about": {
+        "title": "حول رقمنة المستندات",
+        "modernStack": "تقنية حديثة",
+        "modernStackDesc": "مبني باستخدام FastAPI للخادم و React 19 للواجهة الأمامية مع أحدث تقنيات الويب.",
+        "aiPowered": "OCR مدعوم بالذكاء الاصطناعي",
+        "aiPoweredDesc": "تعرف متقدم على النصوص مع مصنف قابل للتكوين لرقمنة دقيقة للمستندات.",
+        "bilingualSupport": "دعم ثنائي اللغة",
+        "bilingualSupportDesc": "دعم كامل للغة الإنجليزية والعربية مع تخطيط من اليمين لليسار وكشف تفاعلي للنصوص.",
+        "responsiveDesign": "تصميم متجاوب",
+        "responsiveDesignDesc": "واجهة صديقة للهواتف المحمولة مع طبقة canvas للاختيار التفاعلي لمناطق النص.",
+        "techStack": "التقنيات المستخدمة",
+        "frontend": "الواجهة الأمامية",
+        "backend": "الخادم",
+        "state": "إدارة الحالة",
+        "build": "البناء"
+    }
+}
