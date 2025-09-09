@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-echo Starting FastAPI + React Development Servers
+echo Starting Development Servers
 echo ===============================================
 
 echo Installing dependencies if needed...

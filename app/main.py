@@ -46,7 +46,7 @@ else:
     @app.get("/")
     async def development_fallback():
         return {
-            "message": "FastAPI + React Document Digitizer",
+            "message": "Document Digitizer",
             "status": "Development Mode",
             "frontend": "Run 'cd frontend-react && npm run dev' to start the React development server",
             "docs": "/docs"

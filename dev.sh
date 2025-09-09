@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🌟 Starting FastAPI + React Development Servers"
+echo "🌟 Starting Development Servers"
 echo "==============================================="
 
 # Check if dependencies are installed

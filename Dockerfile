@@ -1,5 +1,5 @@
 
-# Multi-stage build for FastAPI + React application
+# Multi-stage build for document digitizer application
 
 # Stage 1: Build React frontend
 FROM node:20-alpine AS frontend-build

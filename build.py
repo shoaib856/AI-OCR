@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build script for FastAPI + React application
+Build script for document digitizer application
 """
 import os
 import sys
@@ -47,7 +47,7 @@ def build_frontend():
 def dev_mode():
     """Start development servers"""
     print("Starting development mode...")
-    print("This will start both FastAPI backend and Vite frontend dev servers")
+    print("This will start both backend and frontend dev servers")
     print("\nBackend will be available at: http://localhost:8000")
     print("Frontend will be available at: http://localhost:5173")
     print("\nPress Ctrl+C to stop both servers\n")

@@ -1,5 +1,5 @@
 
-# FastAPI + React Document Digitizer 🚀
+# Document Digitizer 🚀
 
 A modern full-stack application for document digitization with OCR capabilities, featuring:
 - **React 19 + TypeScript** frontend with Vite
@@ -27,7 +27,6 @@ A modern full-stack application for document digitization with OCR capabilities,
 ### 1. Clone and Setup
 ```bash
 git clone <repository-url>
-cd fastapi-rqmnh-fullstack
 
 # Create Python virtual environment
 python -m venv .venv
@@ -47,8 +46,6 @@ cd ..
 **Option A: Python Run Script (Recommended)**
 ```bash
 python run.py
-# Or if you see Unicode character issues:
-python run_simple.py
 ```
 
 **Option B: Platform-Specific Scripts**
@@ -62,7 +59,7 @@ dev.bat
 
 **Option C: Frontend npm Script**
 ```bash
-cd frontend
+cd frontend-react
 npm run start:full
 ```
 
@@ -148,7 +145,6 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 ### Development Scripts
 ```bash
 python run.py              # Start both servers with monitoring (recommended)
-python run_simple.py       # Simple version without Unicode characters
 python start.py            # Start backend only (simple)
 python start.py prod       # Build and start production
 python build.py dev        # Alternative dev server starter
@@ -215,8 +211,8 @@ docker-build.bat
 ./docker-build.sh
 
 # Or manually:
-docker build -t fastapi-react-digitizer:latest .
-docker run -p 8000:8000 fastapi-react-digitizer:latest
+docker build -t document-digitizer:latest .
+docker run -p 8000:8000 document-digitizer:latest
 ```
 
 **What the Docker build does:**
@@ -232,7 +228,7 @@ docker run -p 8000:8000 fastapi-react-digitizer:latest
 docker run -p 8000:8000 \
   -e RQMNH_API_URL=https://your-api.com \
   -e DEBUG=false \
-  fastapi-react-digitizer:latest
+  document-digitizer:latest
 ```
 
 ## 🔄 Migration from Legacy

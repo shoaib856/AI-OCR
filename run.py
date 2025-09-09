@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run script for FastAPI + React application
+Run script for document digitizer application
 Starts both backend and frontend development servers
 """
 import os
@@ -96,7 +96,7 @@ def check_dependencies():
 
 def main():
     """Main function"""
-    print("🌟 FastAPI + React Development Server")
+    print("🌟 Development Server")
     print("=" * 50)
     
     # Set up signal handler for graceful shutdown
@@ -153,7 +153,7 @@ def main():
     print()
     print("🎉 Both servers are starting!")
     print("📱 Frontend (Vite): http://localhost:5173")
-    print(f"🔧 Backend (FastAPI): http://localhost:{backend_port}")
+    print(f"🔧 Backend: http://localhost:{backend_port}")
     print(f"📚 API Docs: http://localhost:{backend_port}/docs")
     print()
     print("💡 The frontend will proxy API calls to the backend")
