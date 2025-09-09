@@ -18,6 +18,7 @@ interface DocumentState {
   imageDimensions: { width: number; height: number };
   isLoading: boolean;
   error: string | null;
+  documentType: string | null;
 }
 
 interface DocumentActions {
@@ -25,6 +26,7 @@ interface DocumentActions {
   setError: (error: string | null) => void;
   setExtractedLines: (lines: ExtractedLine[]) => void;
   setImageDimensions: (dimensions: { width: number; height: number }) => void;
+  setDocumentType: (documentType: string | null) => void;
   extractText: (
     file: File,
     language: string,
@@ -40,6 +42,7 @@ const initialState: DocumentState = {
   imageDimensions: { width: 0, height: 0 },
   isLoading: false,
   error: null,
+  documentType: null,
 };
 
 export const useDocumentStore = create<DocumentStore>((set) => ({
@@ -53,6 +56,8 @@ export const useDocumentStore = create<DocumentStore>((set) => ({
 
   setImageDimensions: (dimensions: { width: number; height: number }) =>
     set({ imageDimensions: dimensions }),
+
+  setDocumentType: (documentType: string | null) => set({ documentType }),
 
   extractText: async (file: File, language: string, clasifier: boolean) => {
     set({ isLoading: true, error: null });

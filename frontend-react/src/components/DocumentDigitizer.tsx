@@ -1,24 +1,21 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useCanvas } from "../hooks/useCanvas";
 import { useDocumentForm } from "../hooks/useDocumentForm";
 import { useDocumentAPI } from "../hooks/useDocumentAPI";
+import { useDocumentStore } from "../stores/documentStore";
 import { createEmptyLine } from "../utils/documentUtils";
+import { parseApiResponse, extractDocumentType } from "../utils/responseParser";
 import { type ExtractedLine } from "../stores/documentStore";
 import HeaderSection from "./HeaderSection";
 import UploadSection from "./UploadSection";
 import PreviewSection from "./PreviewSection";
 import ResultsSection from "./ResultsSection";
 import { cn } from "@/lib/utils";
-
-interface FormData {
-  file: FileList;
-  language: string;
-  clasifier: string;
-}
+import type { DocumentFormData } from "@/lib/types";
 
 const DocumentDigitizer = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Local state for extracted lines
   const [extractedLines, setExtractedLines] = useState<ExtractedLine[]>([]);
@@ -27,6 +24,7 @@ const DocumentDigitizer = () => {
   const canvas = useCanvas();
   const form = useDocumentForm();
   const api = useDocumentAPI({ extractedLines, setExtractedLines });
+  const documentStore = useDocumentStore();
 
   // Local state
   const [showPreview, setShowPreview] = useState<boolean>(false);
@@ -57,22 +55,26 @@ const DocumentDigitizer = () => {
     canvas.handleToggleAllBoxes();
   }, [canvas]);
 
+  const handleUnselectLine = useCallback(() => {
+    canvas.handleUnselectLine();
+  }, [canvas]);
+
   const onSubmit = useCallback(
-    async (data: FormData) => {
-      await api.extractText(
-        form.selectedFile,
+    async (data: DocumentFormData) => {
+      const result = await api.extractText(
         data,
         form.setStatus,
         form.setStatusClass
       );
+      if (result?.result) {
+        const lines = parseApiResponse(result.result);
+        const docType = extractDocumentType(result.result);
+        setExtractedLines(lines);
+        documentStore.setDocumentType(docType);
+      }
     },
-    [api]
+    [api, setExtractedLines, documentStore]
   );
-
-  // Effects
-  useEffect(() => {
-    form.setValue("language", i18n.language);
-  }, [i18n.language]);
 
   return (
     <div className={cn("min-h-screen flex flex-col bg-white")}>
@@ -87,13 +89,13 @@ const DocumentDigitizer = () => {
           onFileSelected={handleFileSelect}
           onFileChange={form.handleFileChange}
           errors={form.formState.errors}
+          control={form.control}
         />
 
         {/* Preview Section */}
         <PreviewSection
           ref={canvas.previewSectionRef}
           showPreview={showPreview}
-          previewSrc={form.previewSrc}
           isProcessing={api.isLoading}
           onSubmit={form.handleSubmit(onSubmit)}
           control={form.control}
@@ -111,6 +113,8 @@ const DocumentDigitizer = () => {
           showAllBoxes={canvas.showAllBoxes}
           onToggleBoxes={handleToggleAllBoxes}
           onSetActiveLine={handleSetActiveLine}
+          onUnselectLine={handleUnselectLine}
+          documentType={documentStore.documentType}
         />
       </section>
     </div>

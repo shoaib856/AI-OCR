@@ -1,12 +1,7 @@
 import { useCallback } from "react";
 import { useDocumentStore, type ExtractedLine } from "../stores/documentStore";
 import { useTranslation } from "react-i18next";
-
-interface FormData {
-  file: FileList;
-  language: string;
-  clasifier: string;
-}
+import type { DocumentFormData } from "@/lib/types";
 
 interface UseDocumentAPIParams {
   extractedLines: ExtractedLine[];
@@ -20,54 +15,13 @@ export const useDocumentAPI = ({
   const { t } = useTranslation();
   const documentStore = useDocumentStore();
 
-  const parseResponse = useCallback(
-    (data: any) => {
-      const lines: ExtractedLine[] = [];
-
-      if (Array.isArray(data?.line_datas)) {
-        data.line_datas.forEach((page: any) => {
-          const pageNum = page?.Page_num || 1;
-          const lineData = page?.line_data || [];
-
-          lineData.forEach((line: any) => {
-            // Convert word_boxes to our WordBox interface
-            const words = Array.isArray(line?.word_boxes)
-              ? line.word_boxes.map((wordBox: number[]) => ({
-                  box:
-                    wordBox.length === 4
-                      ? (wordBox as [number, number, number, number])
-                      : [0, 0, 0, 0],
-                }))
-              : [];
-
-            lines.push({
-              text: line?.line_text || "",
-              score: typeof line?.score === "number" ? line.score : null,
-              box:
-                line?.line_box && line.line_box.length === 4
-                  ? (line.line_box as [number, number, number, number])
-                  : [0, 0, 0, 0],
-              words,
-              pageNum,
-            });
-          });
-        });
-      }
-
-      setExtractedLines(lines);
-      return lines;
-    },
-    [setExtractedLines]
-  );
-
   const extractText = useCallback(
     async (
-      selectedFile: File | null,
-      data: FormData,
+      data: DocumentFormData,
       setStatus: (status: string) => void,
       setStatusClass: (statusClass: string) => void
     ) => {
-      if (!selectedFile) {
+      if (!data.file) {
         setStatus(t("selectImageFirst"));
         setStatusClass("error");
         return null;
@@ -78,7 +32,7 @@ export const useDocumentAPI = ({
 
       try {
         const result = await documentStore.extractText(
-          selectedFile,
+          data.file,
           data.language,
           data.clasifier === "true"
         );
@@ -86,26 +40,15 @@ export const useDocumentAPI = ({
         setStatus(result.signal || result.status || t("success"));
         setStatusClass("success");
 
-        const lines = parseResponse(result);
-        return { result, lines };
+        return { result };
       } catch (error) {
         console.error(error);
         setStatus(t("errorProcessing"));
         setStatusClass("error");
-
-        const errorLines: ExtractedLine[] = [
-          {
-            text: t("errorDuringProcessing"),
-            score: null,
-            box: [0, 0, 0, 0],
-            words: [],
-          },
-        ];
-        setExtractedLines(errorLines);
-        return { result: null, lines: errorLines };
+        return { result: null };
       }
     },
-    [t, documentStore, parseResponse, setExtractedLines]
+    [t, documentStore]
   );
 
   const resetExtractedLines = useCallback(() => {
@@ -116,7 +59,6 @@ export const useDocumentAPI = ({
     extractedLines,
     setExtractedLines,
     extractText,
-    parseResponse,
     resetExtractedLines,
     isLoading: documentStore.isLoading,
   };

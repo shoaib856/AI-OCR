@@ -41,7 +41,9 @@
         "hideLines": "إخفاء الخطوط",
         "showLines": "إظهار الخطوط",
         "toggleLineBoxes": "تبديل صناديق الخطوط",
-        "noLinesExtracted": "لم يتم استخراج خطوط"
+        "unselectLine": "إلغاء اختيار الخط",
+        "noLinesExtracted": "لم يتم استخراج خطوط",
+        "documentType": "نوع المستند"
     },
     "language": {
         "english": "الإنجليزية",

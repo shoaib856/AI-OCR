@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Upload } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { FieldErrors } from "react-hook-form";
+import { useController, type Control, type FieldErrors } from "react-hook-form";
 import { cn } from "@/lib/utils";
-
-interface FormData {
-  file: FileList;
-  language: string;
-  clasifier: string;
-}
+import type { DocumentFormData } from "@/lib/types";
 
 interface UploadSectionProps {
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
   onFileSelected: (file: File) => void;
   onFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  errors: FieldErrors<FormData>;
+  errors: FieldErrors<DocumentFormData>;
+  control: Control<DocumentFormData>;
 }
 
 const UploadSection = ({
@@ -22,15 +18,18 @@ const UploadSection = ({
   onFileSelected,
   onFileChange,
   errors,
+  control,
 }: UploadSectionProps) => {
   const { t } = useTranslation();
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const { field: imagePreview } = useController({
+    control,
+    name: "previewSrc",
+  });
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       onFileSelected(file);
-      setImagePreview(URL.createObjectURL(file));
     }
     onFileChange(event);
   };
@@ -70,9 +69,9 @@ const UploadSection = ({
             </p>
           )}
         </form>
-        {imagePreview && (
+        {imagePreview.value && (
           <div className="w-full border-2 border-blue-400 rounded-2xl overflow-hidden">
-            <img src={imagePreview} alt="Image Preview" />
+            <img src={imagePreview.value} alt="Image Preview" />
           </div>
         )}
       </div>

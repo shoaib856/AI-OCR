@@ -41,7 +41,9 @@
         "hideLines": "Hide Lines",
         "showLines": "Show Lines",
         "toggleLineBoxes": "Toggle line boxes",
-        "noLinesExtracted": "No lines extracted"
+        "unselectLine": "Unselect line",
+        "noLinesExtracted": "No lines extracted",
+        "documentType": "Document Type"
     },
     "language": {
         "english": "English",

@@ -14,23 +14,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { Button } from "./ui/button";
 import { useController, type Control } from "react-hook-form";
 import { type ExtractedLine } from "../stores/documentStore";
 import { LoaderPinwheel, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-interface FormData {
-  file: FileList;
-  language: string;
-  clasifier: string;
-}
+import type { DocumentFormData } from "@/lib/types";
 
 interface PreviewSectionProps {
   showPreview: boolean;
-  previewSrc: string;
   isProcessing: boolean;
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
-  control: Control<FormData>;
+  control: Control<DocumentFormData>;
   extractedLines: ExtractedLine[];
   showAllBoxes: boolean;
   activeLine: number | null;
@@ -45,7 +40,6 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
   (
     {
       showPreview,
-      previewSrc,
       isProcessing,
       onSubmit,
       control,
@@ -62,6 +56,10 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
       name: "language",
     });
     const { field: clasifier } = useController({ control, name: "clasifier" });
+    const { field: previewSrc } = useController({
+      control,
+      name: "previewSrc",
+    });
 
     const containerRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
@@ -73,7 +71,6 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
 
     const handleLanguageChange = (newLanguage: string) => {
       selectedLanguage.onChange(newLanguage);
-      i18n.changeLanguage(newLanguage);
     };
 
     const handleClassifierChange = (value: string) => {
@@ -149,13 +146,12 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
             </SelectContent>
           </Select>
           <div className="text-center">
-            <button
+            <Button
               onClick={onSubmit}
               type="button"
               disabled={isProcessing}
-              className={cn(
-                "bg-blue-600 text-white px-4 py-2 rounded-lg border-none cursor-pointer flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
-              )}
+              variant="default"
+              size="default"
             >
               {!isProcessing && <Sparkles className="size-4" />}
               {isProcessing
@@ -164,7 +160,7 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
               {isProcessing && (
                 <LoaderPinwheel className="size-4 animate-spin" />
               )}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -175,7 +171,7 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
           <div className="relative inline-block">
             <img
               ref={imageRef}
-              src={previewSrc}
+              src={previewSrc.value}
               alt={t("preview.preview")}
               onLoad={handleImageLoad}
               className="max-w-full h-auto block"
@@ -187,9 +183,10 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
               extractedLines.map(
                 (line, i) =>
                   activeLine !== i && (
-                    <button
+                    <Button
                       key={`line-${i}`}
-                      className="absolute border-2 border-green-500 cursor-pointer hover:border-green-600 hover:bg-green-100/20 transition-all duration-200"
+                      variant="ghost"
+                      className="absolute border-2 border-green-500 hover:border-green-600 hover:bg-green-100/20 transition-all duration-200 p-0"
                       style={{
                         left: line.box[0] * scale.x - 5,
                         top: line.box[1] * scale.y,
@@ -207,8 +204,9 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
             {/* Draw active line */}
             {activeLine !== null && extractedLines[activeLine] && (
               <>
-                <button
-                  className="absolute border-4 border-red-500 cursor-pointer hover:border-red-600 hover:bg-red-100/20 transition-all duration-200"
+                <Button
+                  variant="ghost"
+                  className="absolute border-4 border-red-500 hover:border-red-600 hover:bg-red-100/20 transition-all duration-200 p-0"
                   style={{
                     left: extractedLines[activeLine].box[0] * scale.x - 8,
                     top: extractedLines[activeLine].box[1] * scale.y - 4,

@@ -1,9 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/download.jpg";
+import { Languages } from "lucide-react";
+import { Button } from "./ui/button";
 
 const HeaderSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "ar" ? "en" : "ar";
+    i18n.changeLanguage(newLang);
+  };
 
   return (
     <header
@@ -35,6 +42,18 @@ const HeaderSection = () => {
                 {t("header.heroDescription")}
               </p>
             </div>
+          </div>
+
+          {/* Language Switcher */}
+          <div className={cn("flex items-center")}>
+            <Button
+              onClick={toggleLanguage}
+              variant="outline"
+              size="icon"
+              title={t("language.selectLanguage")}
+            >
+              <Languages />
+            </Button>
           </div>
         </div>
       </nav>

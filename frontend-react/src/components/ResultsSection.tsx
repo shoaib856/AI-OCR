@@ -1,8 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Switch } from "./ui/switch";
+import { Button } from "./ui/button";
 import { type ExtractedLine } from "../stores/documentStore";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 
 interface ResultsSectionProps {
   showResults: boolean;
@@ -11,6 +13,8 @@ interface ResultsSectionProps {
   showAllBoxes: boolean;
   onToggleBoxes: () => void;
   onSetActiveLine: (index: number) => void;
+  onUnselectLine: () => void;
+  documentType: string | null;
 }
 
 const ResultsSection = ({
@@ -20,6 +24,8 @@ const ResultsSection = ({
   showAllBoxes,
   onToggleBoxes,
   onSetActiveLine,
+  onUnselectLine,
+  documentType,
 }: ResultsSectionProps) => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
@@ -115,48 +121,95 @@ const ResultsSection = ({
             {t("results.noLinesExtracted")}
           </li>
         ) : (
-          extractedLines.map((line, index) => (
-            <li
-              key={index}
-              onClick={() => onSetActiveLine(index)}
-              title={`Score: ${line.score ?? "?"}`}
-              className={cn(
-                "p-3 border-b border-dashed hover:bg-blue-50 hover:border-blue-200 border-gray-300 cursor-pointer transition-all duration-300 ease-out",
-                {
-                  "bg-blue-100 border-blue-300 shadow-sm": activeLine === index,
-                  "opacity-100 translate-y-0": visibleItems.includes(index),
-                  "opacity-0 -translate-y-4": !visibleItems.includes(index),
-                }
-              )}
-              style={{
-                transitionDelay: `${index * 50}ms`,
-              }}
-            >
-              <div className="flex items-start justify-between gap-2">
-                <span
-                  className="flex-1 text-sm leading-relaxed break-words"
-                  dir="auto"
-                >
-                  {line.text || t("preview.noText")}
-                </span>
-                <div className="flex items-center gap-1 flex-shrink-0">
-                  {line.pageNum && line.pageNum > 1 && (
-                    <span
-                      className={cn(
-                        "text-xs text-blue-600 bg-blue-50 px-1 rounded transition-all duration-200",
-                        {
-                          "scale-100 opacity-100": visibleItems.includes(index),
-                          "scale-0 opacity-0": !visibleItems.includes(index),
-                        }
-                      )}
-                    >
-                      P{line.pageNum}
-                    </span>
-                  )}
+          <>
+            {/* Document Type Declaration */}
+            {documentType && (
+              <li
+                className={cn(
+                  "p-4 mb-2 bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-r-lg transition-all duration-300",
+                  {
+                    "opacity-100 translate-y-0": isVisible,
+                    "opacity-0 -translate-y-2": !isVisible,
+                  }
+                )}
+                style={{
+                  transitionDelay: "0ms",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
+                    {t("results.documentType")}:
+                  </span>
+                  <span className="text-sm font-medium text-green-800 bg-green-100 px-2 py-1 rounded">
+                    {documentType}
+                  </span>
                 </div>
-              </div>
-            </li>
-          ))
+              </li>
+            )}
+
+            {/* Extracted Lines */}
+            {extractedLines.map((line, index) => (
+              <li
+                key={index}
+                onClick={() => onSetActiveLine(index)}
+                title={`Score: ${line.score ?? "?"}`}
+                className={cn(
+                  "p-3 border-b border-dashed hover:bg-blue-50 hover:border-blue-200 border-gray-300 cursor-pointer transition-all duration-300 ease-out",
+                  {
+                    "bg-blue-100 border-blue-300 shadow-sm":
+                      activeLine === index,
+                    "opacity-100 translate-y-0": visibleItems.includes(index),
+                    "opacity-0 -translate-y-4": !visibleItems.includes(index),
+                  }
+                )}
+                style={{
+                  transitionDelay: `${index * 50}ms`,
+                }}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1">
+                    <span
+                      className="text-sm leading-relaxed break-words block"
+                      dir="auto"
+                    >
+                      {line.text || t("preview.noText")}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    {line.pageNum && line.pageNum > 1 && (
+                      <span
+                        className={cn(
+                          "text-xs text-blue-600 bg-blue-50 px-1 rounded transition-all duration-200",
+                          {
+                            "scale-100 opacity-100":
+                              visibleItems.includes(index),
+                            "scale-0 opacity-0": !visibleItems.includes(index),
+                          }
+                        )}
+                      >
+                        P{line.pageNum}
+                      </span>
+                    )}
+                    {activeLine === index && (
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="ms-1 size-6 p-0 rounded-full bg-red-200 hover:bg-red-100 text-red-600"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onUnselectLine();
+                        }}
+                        title={t("results.unselectLine")}
+                      >
+                        <X className="size-3" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </>
         )}
       </ol>
       {extractedLines.length > 0 && (

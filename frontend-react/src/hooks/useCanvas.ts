@@ -18,6 +18,10 @@ export const useCanvas = () => {
     [setActiveLine]
   );
 
+  const handleUnselectLine = useCallback(() => {
+    setActiveLine(null);
+  }, [setActiveLine]);
+
   const handleToggleAllBoxes = useCallback(() => {
     setShowAllBoxes(!showAllBoxes);
   }, [showAllBoxes, setShowAllBoxes]);
@@ -27,6 +31,7 @@ export const useCanvas = () => {
     activeLine,
     previewSectionRef,
     handleSetActiveLine,
+    handleUnselectLine,
     handleToggleAllBoxes,
   };
 };
