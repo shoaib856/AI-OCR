@@ -20,8 +20,8 @@ A modern full-stack application for document digitization with OCR capabilities,
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- Node.js 20+
+- Python 3.11+
+- Node.js 22+
 - npm or yarn
 
 ### 1. Clone and Setup
@@ -216,10 +216,10 @@ docker run -p 8000:8000 document-digitizer:latest
 ```
 
 **What the Docker build does:**
-1. **Stage 1**: Builds React frontend with Node.js 20
-2. **Stage 2**: Creates Python backend with built frontend assets
+1. **Stage 1**: Builds React frontend with Node.js 22
+2. **Stage 2**: Creates Python backend (Python 3.13-slim) with built frontend assets
 3. **Security**: Runs as non-root user
-4. **Health checks**: Built-in health monitoring
+4. **Health checks**: Built-in health monitoring (curl-based)
 5. **Optimization**: Multi-stage build reduces final image size
 
 **Environment Variables:**
