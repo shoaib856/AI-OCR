@@ -76,7 +76,7 @@ async def chat(
 ):
     endpoint = "https://ai-foundry-muller.openai.azure.com/openai/v1/"
     deployment_name = "gpt-4o"
-    api_key = "BOpAwR5PJnS5RhY49bLIQ8DQn2BRjOJn37L7q6FZMBOnxJVqGlf7JQQJ99BIACYeBjFXJ3w3AAAAACOGJt3k"
+    api_key = ""
 
     client = OpenAI(base_url=endpoint, api_key=api_key)
 
