@@ -74,7 +74,7 @@ async def chat(
     query: str = Query(..., description="What's name in the ID"),
     payload: JSON = Body(..., description="Any Json Payload"),
 ):
-    endpoint = "https://ai-foundry-muller.openai.azure.com/openai/v1/"
+    endpoint = ""
     deployment_name = "gpt-4o"
     api_key = ""
 
