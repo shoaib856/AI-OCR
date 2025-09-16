@@ -12,6 +12,7 @@
     },
     "processing": {
         "generateText": "Generate text",
+        "generate": "Generate",
         "loading": "Loading...",
         "processingImage": "Processing image...",
         "selectImageFirst": "Please select an image first.",
@@ -43,7 +44,27 @@
         "toggleLineBoxes": "Toggle line boxes",
         "unselectLine": "Unselect line",
         "noLinesExtracted": "No lines extracted",
-        "documentType": "Document Type"
+        "documentType": "Document Type",
+        "tabs": {
+            "results": "Results",
+            "resultsShort": "Results",
+            "chat": "AI Chat",
+            "chatShort": "Chat"
+        }
+    },
+    "chat": {
+        "title": "AI Assistant",
+        "placeholder": "Ask about the document...",
+        "send": "Send",
+        "sending": "Sending...",
+        "noMessages": "No messages yet. Ask me anything about the document!",
+        "error": "Error sending message",
+        "retry": "Retry",
+        "clear": "Clear Chat",
+        "processingInProgress": "Please wait for document processing to complete before asking questions.",
+        "noDocumentProcessed": "Please upload and process a document first before asking questions.",
+        "processingInProgressTitle": "Document processing in progress",
+        "noDocumentTitle": "No document processed"
     },
     "language": {
         "english": "English",

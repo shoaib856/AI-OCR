@@ -108,7 +108,7 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
     return (
       <div
         className={cn(
-          "bg-gray-100 p-4 rounded-2xl border border-gray-200 shadow-lg w-3/5 ml-2",
+          "bg-gray-100 p-2 sm:p-3 lg:p-4 rounded-2xl border border-gray-200 shadow-lg w-full h-fit",
           {
             "flex flex-col": showPreview,
             hidden: !showPreview,
@@ -117,46 +117,57 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
       >
         {/* Form inputs are now controlled via useController */}
 
-        <div className="flex justify-center items-center mb-5 gap-2">
-          <Select
-            dir={i18n.dir()}
-            value={selectedLanguage.value}
-            onValueChange={handleLanguageChange}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder={t("language.selectLanguage")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="en">{t("language.english")}</SelectItem>
-              <SelectItem value="ar">{t("language.arabic")}</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className="flex flex-col sm:flex-row justify-center items-center mb-3 sm:mb-5 gap-2 sm:gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <Select
+              dir={i18n.dir()}
+              value={selectedLanguage.value}
+              onValueChange={handleLanguageChange}
+            >
+              <SelectTrigger className="w-full sm:w-auto">
+                <SelectValue placeholder={t("language.selectLanguage")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">{t("language.english")}</SelectItem>
+                <SelectItem value="ar">{t("language.arabic")}</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Select
-            dir={i18n.dir()}
-            value={clasifier.value}
-            onValueChange={handleClassifierChange}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder={t("language.selectClassifier")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="true">{t("classifier.use")}</SelectItem>
-              <SelectItem value="false">{t("classifier.without")}</SelectItem>
-            </SelectContent>
-          </Select>
-          <div className="text-center">
+            <Select
+              dir={i18n.dir()}
+              value={clasifier.value}
+              onValueChange={handleClassifierChange}
+            >
+              <SelectTrigger className="w-full sm:w-auto">
+                <SelectValue placeholder={t("language.selectClassifier")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">{t("classifier.use")}</SelectItem>
+                <SelectItem value="false">{t("classifier.without")}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="text-center w-full sm:w-auto">
             <Button
               onClick={onSubmit}
               type="button"
               disabled={isProcessing}
               variant="default"
               size="default"
+              className="w-full sm:w-auto"
             >
               {!isProcessing && <Sparkles className="size-4" />}
-              {isProcessing
-                ? t("processing.loading")
-                : t("processing.generateText")}
+              <span className="hidden sm:inline">
+                {isProcessing
+                  ? t("processing.loading")
+                  : t("processing.generateText")}
+              </span>
+              <span className="sm:hidden">
+                {isProcessing
+                  ? t("processing.loading")
+                  : t("processing.generate")}
+              </span>
               {isProcessing && (
                 <LoaderPinwheel className="size-4 animate-spin" />
               )}
@@ -166,7 +177,7 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
 
         <div
           ref={containerRef}
-          className="relative w-full min-h-[240px] bg-gray-800 rounded-xl overflow-auto border border-gray-200 flex justify-center items-center p-4"
+          className="relative w-full min-h-[200px] sm:min-h-[240px] bg-gray-800 rounded-xl overflow-auto border border-gray-200 flex justify-center items-center p-2 sm:p-4"
         >
           <div className="relative inline-block">
             <img
@@ -208,10 +219,10 @@ const PreviewSection = forwardRef<PreviewSectionRef, PreviewSectionProps>(
                   variant="ghost"
                   className="absolute border-4 border-red-500 hover:border-red-600 hover:bg-red-100/20 transition-all duration-200 p-0"
                   style={{
-                    left: extractedLines[activeLine].box[0] * scale.x - 8,
-                    top: extractedLines[activeLine].box[1] * scale.y - 4,
-                    width: extractedLines[activeLine].box[2] * scale.x + 16,
-                    height: extractedLines[activeLine].box[3] * scale.y + 8,
+                    left: extractedLines[activeLine].box[0] * scale.x - 5,
+                    top: extractedLines[activeLine].box[1] * scale.y,
+                    width: extractedLines[activeLine].box[2] * scale.x + 10,
+                    height: extractedLines[activeLine].box[3] * scale.y,
                   }}
                   onClick={() => onSetActiveLine(activeLine)}
                   title={`${t("preview.activeLine")} ${activeLine + 1}: ${

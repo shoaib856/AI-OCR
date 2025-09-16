@@ -2,7 +2,7 @@
 # Multi-stage build for document digitizer application
 
 # Stage 1: Build React frontend
-FROM node:20-alpine AS frontend-build
+FROM node:22-alpine AS frontend-build
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ COPY frontend-react/ ./frontend-react/
 RUN cd frontend-react && npm run build
 
 # Stage 2: Python backend with built frontend
-FROM python:3.11-slim AS backend
+FROM python:3.13-slim AS backend
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1

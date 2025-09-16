@@ -12,6 +12,7 @@
     },
     "processing": {
         "generateText": "توليد النص",
+        "generate": "توليد",
         "loading": "جاري التحميل...",
         "processingImage": "جارِ معالجة الصورة...",
         "selectImageFirst": "الرجاء اختيار صورة أولاً",
@@ -43,7 +44,27 @@
         "toggleLineBoxes": "تبديل صناديق الخطوط",
         "unselectLine": "إلغاء اختيار الخط",
         "noLinesExtracted": "لم يتم استخراج خطوط",
-        "documentType": "نوع المستند"
+        "documentType": "نوع المستند",
+        "tabs": {
+            "results": "النتائج",
+            "resultsShort": "النتائج",
+            "chat": "المساعد الذكي",
+            "chatShort": "المحادثة"
+        }
+    },
+    "chat": {
+        "title": "المساعد الذكي",
+        "placeholder": "اسأل عن المستند...",
+        "send": "إرسال",
+        "sending": "جاري الإرسال...",
+        "noMessages": "لا توجد رسائل بعد. اسألني أي شيء عن المستند!",
+        "error": "خطأ في إرسال الرسالة",
+        "retry": "إعادة المحاولة",
+        "clear": "مسح المحادثة",
+        "processingInProgress": "يرجى الانتظار حتى اكتمال معالجة المستند قبل طرح الأسئلة.",
+        "noDocumentProcessed": "يرجى رفع ومعالجة مستند أولاً قبل طرح الأسئلة.",
+        "processingInProgressTitle": "جاري معالجة المستند",
+        "noDocumentTitle": "لم يتم معالجة مستند"
     },
     "language": {
         "english": "الإنجليزية",

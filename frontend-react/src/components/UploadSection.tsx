@@ -35,21 +35,21 @@ const UploadSection = ({
   };
 
   return (
-    <div className="bg-white text-gray-800 border border-gray-300 p-5 rounded-lg w-1/6 min-w-[200px]">
+    <div className="bg-white text-gray-800 border border-gray-300 p-3 sm:p-4 lg:p-5 rounded-lg w-full h-fit">
       <div className="h-full flex flex-col">
         <form onSubmit={onSubmit} id="upload-form">
           {/* Upload area - always visible */}
           <div
             className={cn(
-              "bg-white hover:bg-blue-50 w-full py-3 rounded-2xl flex flex-col justify-center items-center text-center mx-auto transition-all duration-300 relative mb-3 border-2 border-dashed border-gray-300 hover:border-blue-400"
+              "bg-white hover:bg-blue-50 w-full py-4 sm:py-3 rounded-2xl flex flex-col justify-center items-center text-center mx-auto transition-all duration-300 relative mb-3 border-2 border-dashed border-gray-300 hover:border-blue-400 min-h-[120px] sm:min-h-[100px]"
             )}
           >
             <label
               htmlFor="file"
               className="flex flex-col items-center cursor-pointer w-full h-full justify-center"
             >
-              <Upload className="text-3xl text-gray-400" />
-              <h4 className="my-1 text-sm text-blue-600">
+              <Upload className="text-2xl sm:text-3xl text-gray-400" />
+              <h4 className="my-1 text-xs sm:text-sm text-blue-600">
                 {t("upload.click")}
               </h4>
               <p className="text-xs text-gray-400">{t("upload.formats")}</p>
@@ -71,7 +71,11 @@ const UploadSection = ({
         </form>
         {imagePreview.value && (
           <div className="w-full border-2 border-blue-400 rounded-2xl overflow-hidden">
-            <img src={imagePreview.value} alt="Image Preview" />
+            <img
+              src={imagePreview.value}
+              alt="Image Preview"
+              className="img-responsive-cover"
+            />
           </div>
         )}
       </div>

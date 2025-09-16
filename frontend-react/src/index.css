@@ -119,3 +119,107 @@
   }
 }
 
+/* Responsive text utilities */
+@utility text-responsive-xs {
+  @apply text-xs sm:text-sm;
+}
+
+@utility text-responsive-sm {
+  @apply text-sm sm:text-base;
+}
+
+@utility text-responsive-base {
+  @apply text-base sm:text-lg;
+}
+
+@utility text-responsive-lg {
+  @apply text-lg sm:text-xl;
+}
+
+@utility text-responsive-xl {
+  @apply text-xl sm:text-2xl;
+}
+
+/* Responsive spacing utilities */
+@utility p-responsive {
+  @apply p-2 sm:p-4 lg:p-6;
+}
+
+@utility px-responsive {
+  @apply px-2 sm:px-4 lg:px-6;
+}
+
+@utility py-responsive {
+  @apply py-2 sm:py-4 lg:py-6;
+}
+
+@utility gap-responsive {
+  @apply gap-2 sm:gap-4 lg:gap-6;
+}
+
+/* Responsive container utilities */
+@utility container-responsive {
+  @apply w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6;
+}
+
+/* Mobile-first responsive grid */
+@utility grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* Document digitizer grid layout */
+@utility grid-document-layout {
+  @apply grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 lg:gap-5;
+}
+
+@utility grid-upload-section {
+  @apply lg:col-span-2 lg:row-span-1;
+}
+
+@utility grid-preview-section {
+  @apply lg:col-span-7 lg:row-span-1;
+}
+
+@utility grid-results-section {
+  @apply lg:col-span-3 lg:row-span-1;
+}
+
+/* Responsive flex utilities */
+@utility flex-responsive {
+  @apply flex flex-col sm:flex-row;
+}
+
+@utility flex-responsive-reverse {
+  @apply flex flex-col-reverse sm:flex-row;
+}
+
+/* Responsive visibility utilities */
+@utility mobile-only {
+  @apply block sm:hidden;
+}
+
+@utility desktop-only {
+  @apply hidden sm:block;
+}
+
+@utility tablet-only {
+  @apply hidden sm:block lg:hidden;
+}
+
+/* Responsive image utilities */
+@utility img-responsive {
+  @apply w-full h-auto max-w-full;
+}
+
+@utility img-responsive-cover {
+  @apply w-full h-auto max-h-32 sm:max-h-40 object-contain;
+}
+
+/* Responsive button utilities */
+@utility btn-responsive {
+  @apply w-full sm:w-auto px-4 py-2 text-sm sm:text-base;
+}
+
+@utility btn-responsive-sm {
+  @apply w-full sm:w-auto px-2 py-1 text-xs sm:text-sm;
+}
